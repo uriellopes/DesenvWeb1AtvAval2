@@ -40,14 +40,6 @@ function renderListContainer() {
   return listContainer;
 }
 
-// Função para renderizar o titulo do container da lista de contatos
-function renderListContainerTitle(title) {
-  const listContainerTitle = document.createElement("h3");
-  listContainerTitle.append(title);
-
-  return listContainerTitle;
-}
-
 // Função para renderizar o elemento container dos card de contatos
 function renderListContactContainer() {
   const contactContainer = document.createElement("div");
@@ -101,7 +93,6 @@ function renderContactCard(contact) {
 //Função de controle de submit do contato ao clicar em cadastro
 function handleFormSubmit(event) {
   event.preventDefault();
-  clearListContacts();
 
   const cpf = document.getElementById("inputCPF").value;
 
@@ -110,7 +101,7 @@ function handleFormSubmit(event) {
     return;
   }
 
-  let contactExist = contacts.find((contact) => contact.cpf === cpf);
+  const contactExist = contacts.find((contact) => contact.cpf === cpf);
   if (contactExist) {
     window.alert("Contato já cadastrado!");
     return;
@@ -128,18 +119,7 @@ function handleFormSubmit(event) {
   };
 
   contacts.push(newContact);
-
-  const listContainer = renderListContainer();
-  const listContainerTitle = renderListContainerTitle(
-    "Novo Contato Cadastrado"
-  );
-  const listContactContainer = renderListContactContainer();
-
-  listContactContainer.append(renderContactCard(newContact));
-
-  listContainer.append(listContainerTitle);
-  listContainer.append(listContactContainer);
-  document.getElementById("list-container-root").append(listContainer);
+  window.alert("Contato salvo com sucesso!");
 }
 
 // Função para listar todos os contatos cadastrados
@@ -152,16 +132,32 @@ function showContacts() {
   }
 
   const listContainer = renderListContainer();
-  const listContainerTitle = renderListContainerTitle("Listar Contatos");
   const listContactContainer = renderListContactContainer();
 
   contacts.forEach((contact) =>
     listContactContainer.append(renderContactCard(contact))
   );
 
-  listContainer.append(listContainerTitle);
   listContainer.append(listContactContainer);
   document.getElementById("list-container-root").append(listContainer);
+}
+
+// Função para buscar um contato salvo
+function findContact() {
+  const contactToFind = window.prompt("Digite o CPF que deseja buscar:");
+
+  if (contactToFind === null) return;
+
+  const contactExist = contacts.find(
+    (contact) => contact.cpf === contactToFind
+  );
+  if (contactExist) {
+    window.alert(
+      `Nome: ${contactExist.name}, Data de Nascimento: ${contactExist.birthdate}, Endereço: ${contactExist.address}`
+    );
+  } else {
+    window.alert("CPF não encontrado!");
+  }
 }
 
 //Adicionar eventListeners aos campos necessários
