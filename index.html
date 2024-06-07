@@ -9,7 +9,61 @@
     <title>Cadastro de Contato</title>
   </head>
   <body>
-    <h1>Cadastro de Contato</h1>
+    <div class="container">
+      <div class="card-form">
+        <h1>Cadastro de Contato</h1>
+
+        <form class="form-container">
+          <div class="input-container">
+            <label for="inputName">Nome:</label>
+            <input
+              type="text"
+              name="name"
+              id="inputName"
+              class="input-item"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <label for="inputCPF">CPF:</label>
+            <input
+              type="text"
+              name="cpf"
+              id="inputCPF"
+              class="input-item"
+              placeholder="000.000.000-00"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <label for="inputBirthDate">Data de Nascimento:</label>
+            <input
+              type="date"
+              name="birthdate"
+              id="inputBirthDate"
+              class="input-item"
+              required
+            />
+          </div>
+          <div class="input-container">
+            <label for="inputAddress">Endereço:</label>
+            <input
+              type="text"
+              name="address"
+              id="inputAddress"
+              class="input-item"
+              required
+            />
+          </div>
+        </form>
+        <div class="buttons-container">
+          <button class="button-item">Cadastrar</button>
+          <button class="button-item">Exibir Contatos</button>
+          <button class="button-item">Data de Nascimento</button>
+          <button class="button-item">Endereço</button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
