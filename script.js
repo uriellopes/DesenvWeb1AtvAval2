@@ -1,20 +1,5 @@
 const CPF_LENGTH = 14; // Quantidade de characteres do CPF ( incluindo os pontos e o traço ).
-
-//Variável para armazear a lista de contatos cadastrados
-const contacts = [
-  {
-    name: "Admin",
-    cpf: "000.000.000-00",
-    birthdate: "2024-06-07",
-    address: "Avenidade tão distante",
-  },
-  {
-    name: "User",
-    cpf: "111.111.111-11",
-    birthdate: "2024-06-07",
-    address: "Rua bem ali",
-  },
-];
+const contacts = []; //Variável para armazear a lista de contatos cadastrados
 
 //Função para adicionar máscara ao cpf
 function handleChangeCPF(event) {
@@ -90,7 +75,7 @@ function renderContactCard(contact) {
   return contactCard;
 }
 
-//Função de controle de submit do contato ao clicar em cadastro
+// Função de controle de submit do contato ao clicar em cadastro
 function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -144,17 +129,40 @@ function showContacts() {
 
 // Função para buscar um contato salvo
 function findContact() {
-  const contactToFind = window.prompt("Digite o CPF que deseja buscar:");
+  const contactToFind = window.prompt(
+    "Digite o CPF do contato que deseja buscar:"
+  );
 
   if (contactToFind === null) return;
 
   const contactExist = contacts.find(
     (contact) => contact.cpf === contactToFind
   );
+
   if (contactExist) {
     window.alert(
       `Nome: ${contactExist.name}, Data de Nascimento: ${contactExist.birthdate}, Endereço: ${contactExist.address}`
     );
+  } else {
+    window.alert("CPF não encontrado!");
+  }
+}
+
+// Função para remover um contato cadastrado
+function removeContact() {
+  const contactToFind = window.prompt(
+    "Digite o CPF do contato que deseja remover:"
+  );
+
+  if (contactToFind === null) return;
+
+  const contactExist = contacts.findIndex(
+    (contact) => contact.cpf === contactToFind
+  );
+
+  if (contactExist >= 0) {
+    contacts.splice(contactExist, 1);
+    window.alert("Contato excluído com sucesso!");
   } else {
     window.alert("CPF não encontrado!");
   }
