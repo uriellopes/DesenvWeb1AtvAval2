@@ -1,17 +1,20 @@
+const CPF_LENGTH = 14; // Quantidade de characteres do CPF ( incluindo os pontos e o traço ).
+
+//Variável para armazear a lista de contatos cadastrados
 const contacts = [
   {
     name: "Admin",
     cpf: "000.000.000-00",
     birthdate: "2024-06-07",
-    address: "desconhecido",
+    address: "Avenidade tão distante",
   },
   {
     name: "User",
-    cpf: "000.000.000-00",
+    cpf: "111.111.111-11",
     birthdate: "2024-06-07",
-    address: "desconhecido",
+    address: "Rua bem ali",
   },
-]; //Variável para armazear a lista de contatos cadastrados
+];
 
 //Função para adicionar máscara ao cpf
 function handleChangeCPF(event) {
@@ -95,6 +98,50 @@ function renderContactCard(contact) {
   return contactCard;
 }
 
+//Função de controle de submit do contato ao clicar em cadastro
+function handleFormSubmit(event) {
+  event.preventDefault();
+  clearListContacts();
+
+  const cpf = document.getElementById("inputCPF").value;
+
+  if (cpf.length !== CPF_LENGTH) {
+    window.alert("Cpf inválido!");
+    return;
+  }
+
+  let contactExist = contacts.find((contact) => contact.cpf === cpf);
+  if (contactExist) {
+    window.alert("Contato já cadastrado!");
+    return;
+  }
+
+  const name = document.getElementById("inputName").value;
+  const birthdate = document.getElementById("inputBirthDate").value;
+  const address = document.getElementById("inputAddress").value;
+
+  const newContact = {
+    name: name,
+    cpf: cpf,
+    birthdate: birthdate,
+    address: address,
+  };
+
+  contacts.push(newContact);
+
+  const listContainer = renderListContainer();
+  const listContainerTitle = renderListContainerTitle(
+    "Novo Contato Cadastrado"
+  );
+  const listContactContainer = renderListContactContainer();
+
+  listContactContainer.append(renderContactCard(newContact));
+
+  listContainer.append(listContainerTitle);
+  listContainer.append(listContactContainer);
+  document.getElementById("list-container-root").append(listContainer);
+}
+
 // Função para listar todos os contatos cadastrados
 function showContacts() {
   clearListContacts();
@@ -119,3 +166,6 @@ function showContacts() {
 
 //Adicionar eventListeners aos campos necessários
 document.getElementById("inputCPF").addEventListener("input", handleChangeCPF);
+document
+  .getElementById("form-register-user")
+  .addEventListener("submit", handleFormSubmit);

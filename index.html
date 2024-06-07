@@ -13,7 +13,12 @@
       <div class="card-form">
         <h1>Cadastro de Contato</h1>
 
-        <form class="form-container">
+        <form
+          id="form-register-user"
+          class="form-container"
+          action="#"
+          method="post"
+        >
           <div class="input-container">
             <label for="inputName">Nome:</label>
             <input
@@ -58,12 +63,14 @@
           </div>
         </form>
         <div class="buttons-container">
-          <button class="button-item">Cadastrar</button>
+          <button class="button-item" type="submit" form="form-register-user">
+            Cadastrar
+          </button>
           <button class="button-item" onclick="showContacts()">
             Exibir Contatos
           </button>
-          <button class="button-item">Data de Nascimento</button>
-          <button class="button-item">Endereço</button>
+          <button class="button-item">Buscar Contato</button>
+          <button class="button-item">Remover Contato</button>
         </div>
       </div>
       <div id="list-container-root"></div>
