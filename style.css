@@ -64,6 +64,31 @@ body {
   background-color: #0008ff;
 }
 
-.button-selected {
+.button-item:active {
   background-color: #1c04a1;
+}
+
+.list-container {
+  background-color: #e3e3e3;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-card {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.contact-card-title {
+  color: #0089ff;
 }
